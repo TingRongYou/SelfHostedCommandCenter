@@ -1,0 +1,9 @@
+title: Ting Rong You | Command Center
+
+layout:
+  Infrastructure:
+    style: row
+    columns: 2
+  Development:
+    style: row
+    columns: 2

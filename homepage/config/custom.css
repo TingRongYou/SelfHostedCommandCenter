@@ -1,0 +1,39 @@
+/* =========================================
+   Nuclear Targeting: Footer Icons Only
+   ========================================= */
+
+/* 1. Target the button containers by their IDs */
+#revalidate, 
+#revalidate svg {
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    cursor: pointer !important;
+}
+
+/* 2. Hover effect for the entire container */
+#revalidate:hover {
+    transform: scale(1.2) rotate(15deg) !important;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3)) !important;
+}
+
+/* 3. The Dark/Light Switch and Palette are handled by the framework buttons */
+/* We target buttons directly inside the footer specifically */
+#footer button:hover {
+    transform: scale(1.2) !important;
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.2)) !important;
+}
+
+#footer button:active {
+    transform: scale(0.9) !important;
+}
+
+/* =========================================
+   Forced Cursor Fix
+   ========================================= */
+
+/* Force the hand cursor on the palette button and its inner SVG */
+button[aria-label*="Palette"], 
+button[aria-label*="Palette"] svg,
+#revalidate,
+#revalidate svg {
+    cursor: pointer !important;
+}

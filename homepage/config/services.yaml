@@ -1,0 +1,27 @@
+- Infrastructure:
+    - Nextcloud:
+        href: http://{{HOMEPAGE_VAR_SERVER_HOSTNAME}}:8080
+        description: My private cloud service
+        icon: nextcloud.png
+        ping: http://{{HOMEPAGE_VAR_SERVER_IP}}:8080
+    - Tailscale:
+        href: https://login.tailscale.com
+        description: My VPN
+        icon: tailscale.png
+
+- Development:
+    - GitHub:
+        href: https://github.com/TingRongYou
+        description: My GitHub profile
+        icon: github.png
+
+- Network Shield:
+    - Pi-hole:
+        icon: pi-hole
+        href: http://100.123.39.79:8081/admin
+        description: Active DNS Sinkhole
+        widget:
+            type: pihole
+            url: http://100.123.39.79:8081
+            version: 6
+            key: "{{HOMEPAGE_VAR_PIHOLE_KEY}}"

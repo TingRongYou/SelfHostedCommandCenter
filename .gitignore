@@ -1,0 +1,30 @@
+# Ignore environment secrets
+secrets.env
+
+# Ignore extra configurations that are not needed
+bookmarks.yaml
+kubernetes.yaml
+proxmox.yaml
+docker.yaml
+
+# Ignore OS/Editor junk
+.DS_Store
+*.log
+.vscode/
+.idea/
+
+# Ignore local archives
+dev_archives/
+
+# Configuration garbage
+vnstat_data/
+logs/
+*.yaml.bak
+
+# Ignore Docker application data and databases
+pihole/
+nextcloud/
+nextcloud_db/
+html/
+
+

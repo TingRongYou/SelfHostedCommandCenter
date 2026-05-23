@@ -1,0 +1,19 @@
+- datetime:
+    text_size: xl
+    format:
+      timeStyle: short
+      dateStyle: short
+
+- resources:
+    cpu: true
+    memory: true
+    disk: 
+      - /
+      - /mnt/usb_vault
+
+- openmeteo:
+    label: Kuala Lumpur
+    latitude: 3.1415
+    longitude: 101.6865
+    timezone: Asia/Kuala_Lumpur
+    units: metric
