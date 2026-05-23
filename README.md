@@ -11,7 +11,7 @@ graph TD
         Homepage[Homepage Dashboard]
         Glances[Glances API]
         Nextcloud[Nextcloud Vault]
-        SpeedTest[Speedtest Tracker]
+        Speedtest[Speedtest Tracker]
     end
     Server -- Port 80 --> Homepage
     Homepage -- API --> Glances
