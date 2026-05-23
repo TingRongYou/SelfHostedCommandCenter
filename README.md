@@ -21,10 +21,10 @@ graph TD
 ```
 
 ## 🚀 Features
-* **Resource Optimized:** Telemetry via headless Glances API, minimizing overhead on leagacy hardware.
+* **Resource Optimized:** Telemetry via headless Glances API, minimizing overhead on legacy hardware.
 * **Infrastructure as Code:** Fully deployable stack using Docker Compose.
 * **Secure Access:** Network layer secured via Tailscale, sensitive configurations handled via environment variables.
-* **Automated Analytics:** Continuous background network monitoring and historical bandwidth graphing via Speettest Tracker.
+* **Automated Analytics:** Continuous background network monitoring and historical bandwidth graphing via Speedtest Tracker.
 * **Custom UI:** Tailored CSS for a cohesive, modern user experience.
 
 ## 🛠️ Tech Stack
