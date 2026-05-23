@@ -51,3 +51,22 @@ services:
       - ./pihole/etc-pihole:/etc/pihole
       - ./pihole/etc-dnsmasq.d:/etc/dnsmasq.d
     restart: unless-stopped
+
+  speedtest:
+    image: lscr.io/linuxserver/speedtest-tracker:latest
+    container_name: speedtest
+    ports:
+      - "8082:80"
+    environment:
+      - TZ=Asia/Kuala_Lumpur
+      - APP_TIMEZONE=Asia/Kuala_Lumpur
+      - PUID=1000
+      - PGID=1000
+      - APP_URL=http://100.123.39.79:8082
+      - DB_CONNECTION=sqlite
+      - SPEEDTEST_SCHEDULE=0 * * * *
+    env_file:
+      - ./homepage/config/secrets.env
+    volumes:
+      - ./speedtest/config:/config
+    restart: unless-stopped

@@ -11,10 +11,12 @@ graph TD
         Homepage[Homepage Dashboard]
         Glances[Glances API]
         Nextcloud[Nextcloud Vault]
+        SpeedTest[Speedtest Tracker]
     end
     Server -- Port 80 --> Homepage
     Homepage -- API --> Glances
     Homepage -- Proxy --> Nextcloud
+    Homepage -- API --> Speedtest
     Nextcloud -- Volume Mount --> USB[64GB USB Vault]
 ```
 
@@ -22,6 +24,7 @@ graph TD
 * **Resource Optimized:** Telemetry via headless Glances API, minimizing overhead on leagacy hardware.
 * **Infrastructure as Code:** Fully deployable stack using Docker Compose.
 * **Secure Access:** Network layer secured via Tailscale, sensitive configurations handled via environment variables.
+* **Automated Analytics:** Continuous background network monitoring and historical bandwidth graphing via Speettest Tracker.
 * **Custom UI:** Tailored CSS for a cohesive, modern user experience.
 
 ## 🛠️ Tech Stack
@@ -29,6 +32,7 @@ graph TD
 * **Dashboard Platform:** Homepage(Liscened under GPL-3.0)
 * **Monitoring:** Glances
 * **Connectivity:** Tailscale
+* **Network Analytics:** Speedtest Tracker
 
 ## ⚙️ Deployment
 1. Clone the repository:

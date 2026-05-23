@@ -15,13 +15,21 @@
         description: My GitHub profile
         icon: github.png
 
-- Network Shield:
+- Network:
     - Pi-hole:
         icon: pi-hole
         href: http://100.123.39.79:8081/admin
-        description: Active DNS Sinkhole
+        description: Active DNS Sinkhole (Network Shield)
         widget:
             type: pihole
             url: http://100.123.39.79:8081
             version: 6
             key: "{{HOMEPAGE_VAR_PIHOLE_KEY}}"
+    - Speedtest:
+        icon: speedtest-tracker
+        href: http://100.123.39.79:8082
+        description: Network Analytics
+        widget:
+            type: speedtest
+            url: http://100.123.39.79:8082
+            key: "{{HOMEPAGE_VAR_SPEEDTEST_KEY}}"
