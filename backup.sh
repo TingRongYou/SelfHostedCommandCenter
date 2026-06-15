@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo docker stop vaultwarden
+
 # Define variables
 DATE=$(date +"%Y-%m-%d")
 BACKUP_FILE="/tmp/server_backup_$DATE.tar.gz"
@@ -24,3 +26,5 @@ rclone --config /home/tingrongyou/.config/rclone/rclone.conf copy "$BACKUP_FILE"
 sudo rm "$BACKUP_FILE"
 
 echo "Backup complete and uploaded to Google Drive!"
+
+sudo docker start vaultwarden

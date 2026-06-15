@@ -6,18 +6,35 @@ A lightweight, containerized dashboard built for resource-efficient management o
 
 ```mermaid
 graph TD
-    User((Client/Phone)) -- Tailscale/WireGuard --> Server[Compaq Server]
+    User((Client/Phone)) -- Tailscale VPN --> Server[Compaq Server]
+    
+    subgraph Tailscale Layer
+        TS_Serve[Tailscale Serve / HTTPS Tunnel]
+    end
+
     subgraph Docker Containers
         Homepage[Homepage Dashboard]
         Glances[Glances API]
         Nextcloud[Nextcloud Vault]
         Speedtest[Speedtest Tracker]
+        Vaultwarden[Vaultwarden Password Manager]
     end
-    Server -- Port 80 --> Homepage
+    
+    subgraph Storage
+        USB[64GB USB Vault]
+    end
+
+    User -- Port 80/443 --> Homepage
+    User -- Secure HTTPS Port 443 --> TS_Serve
+    TS_Serve -- Proxy Pass --> Vaultwarden
+    
     Homepage -- API --> Glances
     Homepage -- Proxy --> Nextcloud
     Homepage -- API --> Speedtest
-    Nextcloud -- Volume Mount --> USB[64GB USB Vault]
+    Homepage -- Link --> Vaultwarden
+    
+    Nextcloud -- Volume Mount --> USB
+    Vaultwarden -- SQLite Backups --> USB
 ```
 
 ## 🚀 Features
@@ -26,6 +43,7 @@ graph TD
 * **Secure Access:** Network layer secured via Tailscale, sensitive configurations handled via environment variables.
 * **Automated Analytics:** Continuous background network monitoring and historical bandwidth graphing via Speedtest Tracker.
 * **Custom UI:** Tailored CSS for a cohesive, modern user experience.
+* **Zero-Knowledge Password Management:** Self-hosted Vaultwarden instance syncing encrypted passwords securely across client devices.
 
 ## 🛠️ Tech Stack
 * **Orchestration:** Docker Compose
@@ -33,18 +51,24 @@ graph TD
 * **Monitoring:** Glances
 * **Connectivity:** Tailscale
 * **Network Analytics:** Speedtest Tracker
+* **Credential Management:** Vaultwarden (Rust-based Bitwarden API implementation)
 
 ## ⚙️ Deployment
 1. Clone the repository:
 ```bash
 git clone https://github.com/TingRongYou/SelfHostedCommandCenter.git
-cd Homepage
+cd SelfHostedCommandCenter
 ```
 2. Configure Secrets:
 Copy the example and populate your environment variables:
 ```bash
 cp homepage/config/secrets.env.example homepage/config/secrets.env
 nano homepage/config/secrets.env
+```
+3. Expose Vaultwarden over Tailscale HTTPS:
+Ensure MagicDNS and HTTPS Certificates are enabled in your Tailscale Admin Console, then initialize the background secure proxy on the host machine:
+```bash
+sudo tailscale serve --bg http://127.0.0.1:8083
 ```
 4. Deploy:
 ```bash
@@ -56,7 +80,8 @@ This project is designed for private, self-hosted environments.
 - No public web exposure of services.
 - Sensitive environment variables are managed locally via `secrets.env` and excluded from source control.
 - Tailscale is recommended for secure, remote access.
-
+- **SSL/TLS Requirement:** Vaultwarden's core cryptographic primitives are protected by enforcing strict end-to-end HTTPS utilizing automated Tailscale Let's Encrypt certificates, preventing plain-text credential leaks over the local network.
 ## ⚖️ Licensing & Credits
 * This project utilizes the [Homepage](https://github.com/gethomepage/homepage.git) platform, which is licensed under the **GNU General Public License v3.0**.
 * Architecture design and custom CSS overrided.
+* Credential backend powered by [Vaultwarden](https://github.com/dani-garcia/vaultwarden), licensed under the **GNU General Public License v3.0**.

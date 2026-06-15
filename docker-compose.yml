@@ -70,3 +70,17 @@ services:
     volumes:
       - ./speedtest/config:/config
     restart: unless-stopped
+
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    restart: unless-stopped
+    ports:
+      - "8083:80"
+    environment:
+      - TZ=Asia/Kuala_Lumpur
+      - WEBSOCKET_ENABLED=true
+    env_file:
+      - ./homepage/config/secrets.env
+    volumes:
+      - /mnt/usb_vault/vaultwarden_data:/data

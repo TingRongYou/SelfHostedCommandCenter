@@ -9,6 +9,11 @@
         description: My VPN
         icon: tailscale.png
 
+    - Vaultwarden:
+        icon: vaultwarden
+        href: "{{HOMEPAGE_VAR_VAULTWARDEN_URL}}"
+        description: My password manager
+
 - Development:
     - GitHub:
         href: https://github.com/TingRongYou
